@@ -1,15 +1,10 @@
-#%%
 from settings import * 
 from nbodies import *
 
 import pygame
 import numpy as np 
-from scipy.integrate import RK45
-import random
 
-from typing import List 
-
-### Initialize Pygame ###
+# %% --- Initialize Pygame --- %% #
 pygame.init()
 
 window = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
@@ -26,7 +21,7 @@ earth_sun = [
 
 sys = System(earth_sun, window) 
 
-#%%
+# %% --- Running simulation in Pygame --- %% #
 if __name__ == '__main__' : 
     RUNNING = True
     while RUNNING:

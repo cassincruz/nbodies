@@ -32,7 +32,7 @@ class System :
         self.window = window
         self.t_max = t_max
         self.f = self._make_f()
-        self.rk = RK45(self.f, 0, self.y, self.t_max, max_step=DT)
+        self.solver = RK45(self.f, 0, self.y, self.t_max, max_step=DT)
 
     def dvdt(System) : 
         forces = []
@@ -66,9 +66,9 @@ class System :
         return np.array([p.velocity for p in self.particles])
 
     def update(self) : 
-        self.rk.step()
-        positions = self.rk.y[:self.rk.y.size // 2].reshape(-1, 2)
-        velocities = self.rk.y[self.rk.y.size // 2:].reshape(-1, 2)
+        self.solver.step()
+        positions = self.solver.y[:self.solver.y.size // 2].reshape(-1, 2)
+        velocities = self.solver.y[self.solver.y.size // 2:].reshape(-1, 2)
         for i, particle in enumerate(self.particles) : 
             particle.position = positions[i]
             particle.velocity = velocities[i]
